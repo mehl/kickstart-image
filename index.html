@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kickstart Image</title>
+
+<body>
+    <canvas id="kickstart" width="2048" height="2048" style="width: 1024px; height: 1024px"></canvas>
+    <script src="./dist/svgrender.js"></script>
+    <script type="module">
+        const canvas = document.getElementById('kickstart');
+        const ctx = canvas.getContext('2d');
+        window.__render(ctx);
+    </script>
+</body>
+
+</html>
