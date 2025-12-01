@@ -1,20 +1,12 @@
 import { imagedata, colors } from "./raw.mjs";
-import { Context, Element } from "svgcanvas";
+import canvasToSvg from "canvas-to-svg";
 
-const render = (context2D, SCALE = 3) => {
+//Create a new mock canvas context. Pass in your desired width and height for your svg document.
+const ctx = new canvasToSvg(500, 500);
 
-    // more options to pass into constructor:
-    const options = {
-        height: context2D.width, // falsy values get converted to 500
-        width: context2D.height, // falsy values get converted to 500
-        ctx: context2D, // existing Context2D to wrap around
-        enableMirroring: false, // whether canvas mirroring (get image data) is enabled (defaults to false)
-        document: undefined, // overrides default document object
-    };
+// const canvas = createCanvas(200, 200)
 
-    // Creates a mock canvas context (mocks `context2D` above)
-    const ctx = new Context(options);
-
+const render = (ctx, SCALE = 3) => {
 
     ctx.save();
     ctx.scale(1, 1.07);
@@ -72,17 +64,15 @@ const render = (context2D, SCALE = 3) => {
             const posx = imagedata[p++];
             const posy = imagedata[p++];
             console.log("Fill with color", byte2, "at", posx.toString(16), posy.toString(16));
-            ctx.restore();
             // Floodfill does not respect transformations
             floodFill(ctx, ...toScreen(posx, posy * 1.125), colors[byte2]);
-            ctx.save();
-            ctx.scale(1, 1.125);
         }
         if (byte1 != 0xFF && byte1 != 0xFE) {
             console.log("Unknown command", byte1, byte2);
         }
     }
-    console.log(ctx.getSerializedSvg())
+    console.log(ctx.getSerializedSvg());
+    document.getElementById("kickstart-svg").innerHTML = ctx.getSerializedSvg();
 };
 
-window.__render = render;
+render(ctx);

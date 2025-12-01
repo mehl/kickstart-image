@@ -7,7 +7,12 @@
     <title>Kickstart Image</title>
 
 <body>
-    <canvas id="kickstart" width="2048" height="2048" style="width: 1024px; height: 1024px"></canvas>
+    <h1>Kickstart Image Rendered on Canvas and as SVG</h1>
+    <div style="display: flex; gap: 20px;">
+        <canvas id="kickstart" width="2048" height="2048" style="width: 1024px; height: 1024px"></canvas>
+        <div id="kickstart-svg"></div>
+    </div>
+    <script src="./dist/render.js"></script>
     <script src="./dist/svgrender.js"></script>
     <script type="module">
         const canvas = document.getElementById('kickstart');
