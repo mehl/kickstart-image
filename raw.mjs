@@ -5,6 +5,8 @@
 // If the first byte is FF and the second byte is not, start drawing a polyline with the color index given in the second byte. Treat any subsequent two bytes as x,y coordinates belonging to that polyline except if the first byte is FF (see rules 2 and 3) or FE (see rule 4), which is where you stop drawing the line.
 // If the first byte is FE, flood fill an area using the color index given in the second byte, starting from the point whose coordinates are given in the next two bytes.
 
+// Source: https://retrocomputing.stackexchange.com/questions/13897/why-was-the-kickstart-1-x-insert-floppy-graphic-so-bad/13940#13940
+
 const rawData = `FF 01 23 0B 3A 0B 3A 21 71 21 71 0B 7D 0B 88 16 88 5E 7F 5E 7F 38 40 38
 3E 36 35 36 34 38 2D 38 2D 41 23 48 23 0B FE 02 25 45 FF 01 21 48 21 0A
 7E 0A 8A 16 8A 5F 56 5F 56 64 52 6C 4E 71 4A 74 44 7D 3C 81 3C 8C 0A 8C
